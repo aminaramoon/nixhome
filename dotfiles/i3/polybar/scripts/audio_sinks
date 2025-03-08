@@ -1,0 +1,15 @@
+#!/bin/bash
+
+IFS=$'\n'
+sink_ids=($(pactl list sinks | grep 'Name:' | awk -v FS=" " '{print $2}'))
+chosen=$(pactl list sinks | grep 'device.description' | awk -v FS="\"" '{print $2}' | grep -v 'sof-hda' | rofi -dmenu)
+sink_names="$(pactl list sinks | grep 'device.description' | cut -d"\"" -f2)"
+
+i=0
+for name in $sink_names; do
+  if [[ "${name}" == "${chosen}" ]]; then
+    pactl set-default-sink ${sink_ids[$i]}
+    break
+  fi
+  i=$((i + 1))
+done

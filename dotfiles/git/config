@@ -1,0 +1,53 @@
+[rerere]
+enabled = true
+
+[rebase]
+autoStash = true
+
+[alias]
+	ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	assume = update-index -a --assume-unchanged
+	append = commit -a --amend --no-edit
+	unassume = update-index --no-assume-unchanged
+	assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+	name = rev-parse --abbrev-ref HEAD
+	publish = "!git push -u origin $(git name)"
+	unpublish = "!git push origin :$(git name)"
+	rebase-ours = rebase -Xours
+	rebase-theirs = rebase -Xtheirs
+	unstage = reset HEAD
+	s = status -sb
+	upstream-name = !git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD)
+
+[core]
+	editor = nvim
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+
+[pager]
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+
+[user]
+	email = amin.aramoon@gmail.com
+	name = Amin Aramoon

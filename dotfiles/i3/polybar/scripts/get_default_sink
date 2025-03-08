@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+
+default_sink=$(pactl get-default-sink)
+rear_ts4=$(echo ${default_sink} | grep TS4 | grep -i rear)
+front_ts4=$(echo ${default_sink} | grep TS4 | grep -iv rear)
+built_in=$(echo ${default_sink} | grep -i pci)
+bluetooth=$(echo ${default_sink} | grep bluez)
+
+if [ ! -z ${rear_ts4} ]; then
+	echo "󰓃"
+elif [ ! -z ${front_ts4} ]; then
+	echo "󱎔"
+elif [ ! -z ${built_in} ]; then
+	echo ""
+elif [ ! -z ${bluetooth} ]; then
+	echo "󰥰"
+else
+	echo ${default_sink:0:4}
+fi
+

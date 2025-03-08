@@ -1,0 +1,242 @@
+# i3 configuration
+set $mod Mod4
+
+# setting background color to black
+
+gaps inner 2
+smart_borders on
+smart_borders no_gaps
+
+# Font for window titles.
+font pango:JerBrainsMono Nerd 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# setting the wallpaper
+exec --no-startup-id nitrogen --restore
+# exec --no-startup-id feh --bg-scale $HOME/Pictures/wallpaper.jpg
+# exec --no-startup-id xsetroot -solid "#333333"
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id numlockx on
+
+set $left_monitor e-DP-1-l
+set $center_monitor e-DP-1-c
+set $right_monitor e-DP-1-r
+
+# set ultrawide monitor to three screens
+exec_always --no-startup-id /usr/bin/bash $HOME/.config/i3/launch.sh
+
+# start-ups applets and services
+# exec --no-startup-id albert # keyboard launcher
+exec --no-startup-id nm-applet # network manager applet
+exec --no-startup-id Enpass  # password manager
+exec --no-startup-id slack  # slack
+exec --no-startup-id blueman-applet  # bluetooth applet
+exec --no-startup-id flameshot  # screenshot applet
+
+# shortkeys for media controller
+# Use pactl to adjust volume in PulseAudio.
+# set $refresh_i3status killall -SIGUSR1 i3status
+# Update volume indicator in i3_status run them wih "&& $refresh_i3status"
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Play/Pause buttoms bindings
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
+bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+
+# Print Screen binding
+bindsym Print exec flameshot full --path $HOME/Desktop
+bindsym Shift+Print exec flameshot gui --path $HOME/Desktop
+
+set $webbacm_mic alsa_input.usb-046d_HD_Pro_Webcam_C920_1A9ADD8F-02.analog-stereo
+set $mute_mic alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_4__sink.monitor
+set $bluetooth_speaker bluez_sink.94_DB_56_97_E9_83.a2dp_sink
+set $large_speakers alsa_output.usb-CalDigit_Inc._CalDigit_TS4_Audio_-_Rear-00.analog-stereo
+
+bindsym XF86Tools exec pactl set-default-sink $large_speakers 
+bindsym XF86Launch5 exec pactl set-default-sink $bluetooth_speaker 
+bindsym XF86Launch6 exec pactl set-default-source $webbacm_mic
+bindsym XF86Launch7 exec pactl set-default-source $mute_mic 
+
+# start a terminal
+bindsym $mod+Return exec alacritty
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start (a program launcher)
+bindsym $mod+d exec rofi -show drun 
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# changing workspace with mode+tab
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# changing workspace in a window
+bindsym Mod1+Tab workspace next_on_output
+bindsym Mod1+Shift+Tab workspace prev_on_output
+
+# split horizontally by default
+default_orientation horizontal
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+# bindsym $mod+d focus child
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# switch to workspace
+workspace 1 output $left_monitor
+workspace 2 output $center_monitor
+workspace 3 output $center_monitor
+workspace 4 output $center_monitor
+workspace 5 output $right_monitor
+
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+client.focused_inactive #0d1010 #212121 #d9d9d9 #0d1010 #063340
+client.unfocused        #0d1010 #212121 #d9d9d9 #424242 #063340
+client.focused          #d9d9d9 #cecece #000000 #d9d9d9 #d9d9d9
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+#bar {
+    #status_command $HOME/.local/bin/bumblebee-status -m date time battery pasource pasink indicator -t iceberg
+	#font pango:JetBrainsMono Nerd Font 12
+	#separator_symbol "|"
+	#tray_output $center_monitor
+	#workspace_buttons yes
+	#strip_workspace_numbers no
+	#position top
+#}
+
+# must be here for i3-gap to work
+for_window [ class=".*" ] border pixel 2
+for_window [ class="Nm-connection-editor" instance="nm-connection-editor" ] floating enable
+for_window [ class="Enpass" instance="Enpass" ] floating enable
+for_window [ window_role="pop-up" ] floating enable
+for_window [ class="Pavucontrol" ] floating enable borders none
+
+assign [ class="Brave-browser" window_role="browser" ] 1
+assign [ class="Google-chrome" window_role="browser" ] 3
+assign [ class="Sourcetrail" ] 4
+assign [ class="Slack" ] 5
+
