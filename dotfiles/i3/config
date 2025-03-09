@@ -235,8 +235,8 @@ for_window [ class="Enpass" instance="Enpass" ] floating enable
 for_window [ window_role="pop-up" ] floating enable
 for_window [ class="Pavucontrol" ] floating enable borders none
 
-assign [ class="Brave-browser" window_role="browser" ] 1
-assign [ class="Google-chrome" window_role="browser" ] 3
+assign [ class="Brave" ] 1
+assign [ class="Google-chrome" ] 3
 assign [ class="Sourcetrail" ] 4
 assign [ class="Slack" ] 5
 

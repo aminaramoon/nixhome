@@ -45,7 +45,6 @@ in
     fusePackages.fuse_2
 
     # # tools
-    zsh
     unixtools.nettools
     ethtool
     ripgrep
@@ -116,6 +115,9 @@ in
     };
     ".config/nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/nvim";
+    };
+    ".zshrc" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/zshrc";
     };
   };
 

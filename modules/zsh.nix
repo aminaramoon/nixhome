@@ -8,6 +8,7 @@
     enableCompletion = true;
     dotDir = ".config/zsh";
     history = { path = "${config.xdg.dataHome}/zsh/zsh_history"; };
+    envExtra = "export ZDOTDIR=$HOME";
     plugins = [
           {
               name = "zsh-autosuggestions";
