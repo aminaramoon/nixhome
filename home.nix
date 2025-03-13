@@ -6,6 +6,7 @@ in
 {
   imports = [
     ./modules/zsh.nix
+    ./modules/i3.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -69,19 +70,6 @@ in
 
     # # apps
     enpass
-
-    # # i3wm
-    i3lock
-    polybar
-    nitrogen
-    feh
-    numlockx
-    xorg.xsetroot
-    networkmanager
-    flameshot
-    pulseaudio
-    rofi
-    networkmanagerapplet
 
   ];
   
