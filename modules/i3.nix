@@ -11,8 +11,10 @@
     networkmanager
     flameshot
     pulseaudio
+    pulseaudio-ctl
     rofi
     networkmanagerapplet
+    playerctl
     blueman
   ];
   
