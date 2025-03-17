@@ -12,6 +12,7 @@
     flameshot
     pulseaudio
     pulseaudio-ctl
+    pavucontrol
     rofi
     networkmanagerapplet
     playerctl
