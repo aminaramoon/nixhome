@@ -7,6 +7,7 @@ in
   imports = [
     ./modules/zsh.nix
     ./modules/i3.nix
+    ./modules/containers.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
