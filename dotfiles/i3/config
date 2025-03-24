@@ -15,12 +15,9 @@ floating_modifier $mod
 
 # setting the wallpaper
 exec --no-startup-id nitrogen --restore
-# exec --no-startup-id feh --bg-scale $HOME/Pictures/wallpaper.jpg
-# exec --no-startup-id xsetroot -solid "#333333"
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id numlockx on
 
 set $left_monitor e-DP-1-l
@@ -31,7 +28,6 @@ set $right_monitor e-DP-1-r
 exec_always --no-startup-id /usr/bin/bash $HOME/.config/i3/launch.sh
 
 # start-ups applets and services
-# exec --no-startup-id albert # keyboard launcher
 exec --no-startup-id nm-applet # network manager applet
 exec --no-startup-id Enpass  # password manager
 exec --no-startup-id slack  # slack
@@ -40,7 +36,6 @@ exec --no-startup-id flameshot  # screenshot applet
 
 # shortkeys for media controller
 # Use pactl to adjust volume in PulseAudio.
-# set $refresh_i3status killall -SIGUSR1 i3status
 # Update volume indicator in i3_status run them wih "&& $refresh_i3status"
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%

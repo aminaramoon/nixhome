@@ -57,6 +57,13 @@ in
     tmux
     xclip
     fd
+    bat
+    eza
+    dust
+    cheat
+    tldr
+    procs
+    zoxide
     stow
 
     # # git
